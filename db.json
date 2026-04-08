@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "user_id": "david_nit",
+      "user_name": "David",
+      "password": "david11",
+      "email": "david@outlook.com",
+      "id": "opJm8eaHf8E"
+    }
+  ],
+  "appointments": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

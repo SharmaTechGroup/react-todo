@@ -3,6 +3,7 @@ import App from "../App";
 import { Login } from "../components/login";
 import { Register } from "../components/register";
 import { Home } from "../components/home";
+import { Dashboard } from "../components/dashboard";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
                 element: <Register width='w-25' />
             }
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard />,
+        
     }
     
 ])

@@ -6,8 +6,37 @@
       "password": "david11",
       "email": "david@outlook.com",
       "id": "opJm8eaHf8E"
+    },
+    {
+      "user_id": "john_12",
+      "user_name": "John",
+      "password": "john",
+      "email": "john@gmail.com",
+      "id": "V3DBVOUfJqY"
     }
   ],
-  "appointments": [],
+  "appointments": [
+    {
+      "title": "Client Meeting",
+      "description": "Project review meeting with client",
+      "date": "2026-04-11",
+      "user_id": "john_12",
+      "id": "TjcnPqAqlE0"
+    },
+    {
+      "title": "Birthday",
+      "description": "Plan party",
+      "date": "2026-04-12",
+      "user_id": "david_nit",
+      "id": "2Lxr8T2QVaA"
+    },
+    {
+      "title": "React JS",
+      "description": "Attend Project Class",
+      "date": "2026-04-21",
+      "user_id": "john_12",
+      "id": "xu6b4X0rqC8"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

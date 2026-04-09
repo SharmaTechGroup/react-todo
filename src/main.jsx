@@ -7,10 +7,13 @@ import router from './routes/routes.jsx'
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.js'
+import { CookiesProvider } from 'react-cookie'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <CookiesProvider>
+       <RouterProvider router={router}></RouterProvider>
+    </CookiesProvider>
   </StrictMode>,
 )

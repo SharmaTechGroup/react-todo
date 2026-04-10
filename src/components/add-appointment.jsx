@@ -1,30 +1,34 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react"
-import { useCookies } from "react-cookie"
+import { Cookies, useCookies } from "react-cookie"
+import { Link, useNavigate } from "react-router-dom";
 
 
-export function AddAppointment(props){
+export function AddAppointment(){
 
 
+    const [cookies, setCookie, removeCookie] = useCookies(['userid','username']);
+    let navigate = useNavigate();
 
     const formik = useFormik({
         initialValues:{
             title: '',
             description:'',
             date: new Date(),
-            user_id: props.user_id
+            user_id: cookies['userid']
         },
         onSubmit: (appointment)=>{
             axios.post('http://127.0.0.1:3000/appointments', appointment)
             .then(()=>{
                  console.log('Appointment Added');
             })
+            navigate('/dashboard/details');
         }
     })
 
     return(
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} className="w-50 mt-2">
             <div className="modal-header">
                 <h4>Add New Appointment</h4>
             </div>
@@ -45,7 +49,7 @@ export function AddAppointment(props){
             </div>
             <div className="modal-footer">
                 <button type="submit" data-bs-dismiss="modal" className="btn btn-primary">Add</button>
-                <button type="button" data-bs-dismiss="modal" className="btn btn-warning">Cancel</button>
+                <Link to='/dashboard/details' className="btn btn-warning mx-2">Cancel</Link>
             </div>
         </form>
     )

@@ -2,13 +2,11 @@ import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom";
-import { AddAppointment } from "./add-appointment";
+import { Outlet, useNavigate,Link } from "react-router-dom";
 
 export function Dashboard(){
 
     const [cookies, setCookie, removeCookie] = useCookies(['userid', 'username']);
-    const [appointments, setAppointments] = useState([{id:'', title:'', description:'', date: new Date(), user_id:''}]);
 
     let navigate = useNavigate();
 
@@ -18,21 +16,13 @@ export function Dashboard(){
         navigate('/login')
     }
 
-    function LoadAppointments(){
-
-            axios.get(`http://127.0.0.1:3000/appointments`)
-            .then(response=>{
-                var records = response.data.filter(appointment=> appointment.user_id===cookies['userid']);
-                setAppointments(records);
-            })
-
-    }
+   
 
     useEffect(()=>{
 
-        LoadAppointments();
+        
 
-    },[appointments])
+    },[])
 
     return(
         <div className="container-fluid">
@@ -60,37 +50,10 @@ export function Dashboard(){
                         </div>
                     </div>
                     <div className="mt-4">
-                        <table className="table table-hover caption-top">
-                            <caption> Your Appointments <button data-bs-target="#newAppointment" data-bs-toggle="modal" className="bi btn btn-dark ms-3 bi-plus-lg"></button> </caption>
-                            <div className="modal fade" id="newAppointment">
-                                <div className="modal-dialog">
-                                    <div className="modal-content">
-                                         <AddAppointment user_id={cookies['userid']} />
-                                    </div>
-                                </div>
+                            <span className="fs-5 fw-bold">Your Appointments</span> <Link to='add-appointment' className="bi btn btn-dark ms-3 bi-plus-lg"></Link>
+                            <div>
+                                <Outlet />
                             </div>
-                            <thead>
-                                <tr>
-                                    <th> Title </th>
-                                    <th> Date </th>
-                                    <th> Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    appointments.map(appointment=>
-                                        <tr key={appointment.id}>
-                                            <td>{appointment.title}</td>
-                                            <td>{moment(appointment.date).format('DD dddd, MMMM yyyy')}</td>
-                                            <td>
-                                                <button className="btn btn-warning bi bi-pen-fill"></button>
-                                                <button className="btn btn-danger bi bi-trash-fill mx-2"></button>
-                                            </td>
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

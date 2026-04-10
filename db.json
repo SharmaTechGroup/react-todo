@@ -17,11 +17,11 @@
   ],
   "appointments": [
     {
-      "title": "Client Meeting",
+      "id": "TjcnPqAqlE0",
+      "title": "Attend Client Meeting",
       "description": "Project review meeting with client",
-      "date": "2026-04-11",
-      "user_id": "john_12",
-      "id": "TjcnPqAqlE0"
+      "date": "2026-04-11T00:00:00.000Z",
+      "user_id": "john_12"
     },
     {
       "title": "Birthday",
@@ -36,6 +36,13 @@
       "date": "2026-04-21",
       "user_id": "john_12",
       "id": "xu6b4X0rqC8"
+    },
+    {
+      "id": "cvwMqVUc7Jw",
+      "title": "React JS Class ",
+      "description": "Attend React Project",
+      "date": "2026-04-16T00:00:00.000Z",
+      "user_id": "david_nit"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

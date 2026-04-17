@@ -2,6 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
+import { useCaptcha } from "../hooks/use-captcha";
 
 
 export function Login(props){
@@ -10,6 +11,8 @@ export function Login(props){
     const [cookies, setCookie, removeCookie] = useCookies(['userid', 'username']);
 
     let navigate = useNavigate();
+
+    let code = useCaptcha();
 
     const formik = useFormik({
         initialValues: {

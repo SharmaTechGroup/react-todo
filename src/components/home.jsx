@@ -1,7 +1,10 @@
+import { useApiData } from "../hooks/use-api-data"
 import { Login } from "./login"
 import { Register } from "./register"
 
 export function Home(){
+
+
     return(
         <div className="row">
             <div className='col'>

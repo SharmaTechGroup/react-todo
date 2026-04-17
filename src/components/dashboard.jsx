@@ -1,21 +1,28 @@
 import axios from "axios";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useCookies } from "react-cookie"
 import { Outlet, useNavigate,Link } from "react-router-dom";
 
 export function Dashboard(){
 
     const [cookies, setCookie, removeCookie] = useCookies(['userid', 'username']);
+    const [searchString, setSearchString] = useState('');
 
     let navigate = useNavigate();
 
-    function handleSignout(){
+    const handleSignout = useCallback(()=>{
         removeCookie('userid');
         removeCookie('username');
         navigate('/login')
-    }
+    },[])
 
+    
+
+    function handleSearchChange(e){
+        setSearchString(e.target.value);
+        
+    }
    
 
     useEffect(()=>{
@@ -33,6 +40,7 @@ export function Dashboard(){
                 </span>
                 <div>
                     <span className="bi bi-person-circle mx-4"> {cookies['username']} </span>
+                    <button className="bi bi-share btn btn-light">Shared</button>
                     <button onClick={handleSignout} className="btn btn-link">Signout</button>
                 </div> 
             </div>
@@ -45,14 +53,14 @@ export function Dashboard(){
                 <div className="col-10">
                     <div className="d-flex justify-content-center">
                         <div className="input-group w-50">
-                            <input type="text" className="form-control" placeholder="Search appointments" />
+                            <input onChange={handleSearchChange} type="text" className="form-control" placeholder="Search appointments" />
                             <button className="btn btn-dark bi bi-search"></button>
                         </div>
                     </div>
                     <div className="mt-4">
                             <span className="fs-5 fw-bold">Your Appointments</span> <Link to='add-appointment' className="bi btn btn-dark ms-3 bi-plus-lg"></Link>
                             <div>
-                                <Outlet />
+                                <Outlet context={searchString} />
                             </div>
                     </div>
                 </div>

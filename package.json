@@ -11,6 +11,7 @@
     "api": "npx json-server db.json --watch"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.14.0",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
@@ -20,6 +21,7 @@
     "react": "^19.2.4",
     "react-cookie": "^8.1.0",
     "react-dom": "^19.2.4",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.14.0",
     "yup": "^1.7.1"
   },

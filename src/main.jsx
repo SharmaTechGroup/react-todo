@@ -8,12 +8,16 @@ import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.js'
 import { CookiesProvider } from 'react-cookie'
+import { Provider } from 'react-redux'
+import store from './store/store.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CookiesProvider>
-       <RouterProvider router={router}></RouterProvider>
+       <Provider store={store}>
+          <RouterProvider router={router}></RouterProvider>
+       </Provider>
     </CookiesProvider>
   </StrictMode>,
 )

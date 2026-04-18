@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -6,8 +6,12 @@ import './App.css'
 import { Link, Outlet } from 'react-router-dom'
 import { Login } from './components/login'
 import { Register } from './components/register'
+import store from './store/store'
 
 function App() {
+
+
+  useEffect(()=>{},[store])
 
   return (
     <div className='container-fluid'>

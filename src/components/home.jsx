@@ -1,9 +1,12 @@
+import { useEffect } from "react"
 import { useApiData } from "../hooks/use-api-data"
 import { Login } from "./login"
 import { Register } from "./register"
+import store from "../store/store"
 
 export function Home(){
 
+    useEffect(()=>{},[store]);
 
     return(
         <div className="row">

@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useCookies } from "react-cookie"
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { AddAppointment } from "./add-appointment";
+import { useDispatch } from "react-redux";
+import { addToShared } from "../slicers/task-slicer";
+import store from "../store/store";
 
 
 export function AppointmentDetails(){
@@ -14,6 +17,7 @@ export function AppointmentDetails(){
     let navigate = useNavigate();
 
     let searchString = useOutletContext();
+    let dispatch = useDispatch();
 
     const LoadAppointments = useCallback(()=>{
          axios.get(`http://127.0.0.1:3000/appointments`)
@@ -36,13 +40,21 @@ export function AppointmentDetails(){
                 return userAppointments.filter(appointment=> appointment.title.toLowerCase().includes(searchString.toLowerCase()));
           }
 
-    },[searchString])
+    },[searchString, appointments])
 
    
     useEffect(()=>{
         LoadAppointments();
        
-    },[])
+    },[appointments, cookies, store])
+
+    function handleShareClick(appointment){
+        var stat = confirm(`Are your sure? What to share\n${appointment.title}`);
+        if(stat===true){
+             dispatch(addToShared(appointment));
+             navigate('/dashboard');
+        }
+    }
 
     return(
         <div className="mt-4">
@@ -65,7 +77,7 @@ export function AppointmentDetails(){
                                             <td>
                                                 <Link to={`/dashboard/edit-appointment/${appointment.id}`} className="btn btn-warning bi bi-pen-fill"></Link>
                                                 <Link to={`/dashboard/delete-appointment/${appointment.id}`} className="btn btn-danger bi bi-trash-fill mx-2"></Link>
-                                                <button className="btn btn-dark bi bi-share-fill me-2"></button>
+                                                <button onClick={()=>{handleShareClick(appointment)}} className="btn btn-dark bi bi-share-fill me-2"></button>
                                             </td>
                                         </tr>
                                     )

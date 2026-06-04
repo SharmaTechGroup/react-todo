@@ -1,7 +1,10 @@
 <script>
-      f1();
-     function f1(){
-        document.write("Hello");
+     var x = 5;
+     function Print(param){
+          param = x++;
+         return param;
      }
-    
+     console.log(Print(10));
+  console.log(Print(10));
+  console.log(Print(10));
 </script>
